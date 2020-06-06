@@ -10,7 +10,7 @@
       name: bob
       comment: "John Smith"
       groups: wheel
-      enerate_ssh_key: yes
+      generate_ssh_key: yes
       state: present
 
   - name: Add User Lisa
