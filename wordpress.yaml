@@ -1,0 +1,36 @@
+---
+- name: Installs Packages
+  become: yes
+  become_method: sudo
+  user: centos
+  hosts: all
+  tasks:
+  - name: Install dependencies for wordpress
+    package: 
+      name: "{{item}}"
+      state: present
+    with_items:
+    - httpd
+
+  - name: Download wordpress and unacrhive
+    unarchive:
+      src: https://wordpress.org/latest.tar.gz
+      dest: /var/www/html
+      remote_src: yes
+  
+
+
+
+  - name: Selinux
+    shell: "sudo setenforce 0"
+    shell: "sudo chown -R apache:apache /var/www/html"
+
+  - name: Restart httpd
+    become: yes
+    become_method: sudo
+    systemd:
+      name: httpd
+      state: restarted  
+      enabled: yes 
+
+

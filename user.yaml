@@ -10,8 +10,8 @@
     user:
       name: "{{item}}"
       state: present
-      with_items:
-      - bob
-      - tim
-      - john
-      
+    with_items:
+    - bob
+    - tim
+    - john
+
